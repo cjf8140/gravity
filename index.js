@@ -16,11 +16,6 @@ function setup() {
     s_x[i] = random(width);
     s_y[i] = random(height);
   }
-var UserAgent = navigator.userAgent;
-  if (UserAgent.match(/iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null)
-{
-    kgon=1;
-  }
 }
 
 function draw() {
@@ -116,16 +111,4 @@ function draw() {
   fill(255);
   textSize(35);
   text("Lat: "+ lat.toPrecision(4) +"˚", m_x, m_y-50);
-}
-
-function keyPressed() {
-  if(key == '1') {
-    num--;
-  }
-  if(key == '2') {
-    num ++;
-  }
-  if(num < 0) {
-    num = 0;
-  }
 }
