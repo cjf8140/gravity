@@ -19,7 +19,7 @@ function setup() {
 var UserAgent = navigator.userAgent;
   if (UserAgent.match(/iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null)
 {
-    num=4;
+    num=5;
   }
 }
 
@@ -74,21 +74,21 @@ function draw() {
   var y = height- 450*sin(radians(lat))
   
   //Gravity
-  if(num > 2) {
+  if(num > 3) {
     var g = 9.78049 * (1+0.0052884*sin(radians(lat))*sin(radians(lat)) - 0.0000059*sin(2*radians(lat))*sin(2*radians(lat)))
     noStroke();
     fill(255, 50 , 50);
     textSize(50);
     text("G: "+ g.toPrecision(5) +"m/s²", 630, 60);
   }
-  if(num > 3) {
+  if(num > 4) {
     //kilogram
     stroke(255, 255, 0);
     strokeWeight(3);
     fill(255, 255, 0);
     text("kg: "+ (g/9.7805 * 200).toPrecision(5) +"kg", 605, 120);
   }
-  if(num > 0) {
+  if(num > 1) {
     //Universal Gravity
     strokeWeight(10);
     stroke(200, 50, 50);
@@ -108,7 +108,8 @@ function draw() {
     strokeWeight(10);
     stroke(50, 50, 200);
     line(x, y, x+cos(radians(lat))*100, y);
-
+  }
+  if(num>0) {
     //Where am I?
     noStroke();
     fill(155, 155, 255, 130);
@@ -120,7 +121,7 @@ function draw() {
   ellipse(m_x, m_y, 50, 50);
   //Display Latitude
   
-  if(num > 1) {
+  if(num > 2) {
     fill(255);
     textSize(35);
     text("Lat: "+ lat.toPrecision(4) +"˚", m_x, m_y-50);
@@ -137,7 +138,7 @@ function keyPressed() {
   if(num < 0) {
     num = 0;
   }
-  if(num > 4) {
-    num = 4
+  if(num > 5) {
+    num = 5
   }
 }
