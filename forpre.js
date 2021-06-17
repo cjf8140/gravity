@@ -28,10 +28,10 @@ function draw() {
 
 
   if(keyIsDown(UP_ARROW)) {
-      star += 10;
+      star += 40;
   }
   if(keyIsDown(DOWN_ARROW)) {
-      star -= 10;
+      star -= 40;
   }
   if(star > 1000) {
     star = 999;
