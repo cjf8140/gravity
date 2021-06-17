@@ -35,14 +35,20 @@ function draw() {
   if(star < 0) {
     star = 0;
   }
-  strokeWeight(1);
-  stroke(255, 255, 0);
   for(var i = 0; i < star;i ++) {
+    strokeWeight(1);
+    stroke(255, 255, 0);
     ellipse(s_x[i], s_y[i], 1, 1);
+    stroke(255, 255, 0, 50);
+    strokeWeight(5);
+    ellipse(s_x[i], s_y[i], 3, 3);
   }
 
-  //It's Eartj
-  stroke(146, 183, 254);
+  //It's Earth
+  noStroke();
+  fill(146, 183, 254, 50);
+  ellipse(0, height, 930, 930);
+
   strokeWeight(3);
   fill(5, 120, 51);
   ellipse(0, height, 900, 900);
