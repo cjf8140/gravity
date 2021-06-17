@@ -15,7 +15,9 @@ function setup() {
   for(var i = 0; i < 1000;i ++) {
     s_x[i] = random(width);
     s_y[i] = random(height);
-
+  }
+  if (typeof screen.orientation !== 'undefined') {
+    kgon=1;
   }
 }
 
