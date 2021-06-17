@@ -16,6 +16,7 @@ function setup() {
     s_x[i] = random(width);
     s_y[i] = random(height);
   }
+var UserAgent = navigator.userAgent;
   if (UserAgent.match(/iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null)
 {
     kgon=1;
