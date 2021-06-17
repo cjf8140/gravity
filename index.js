@@ -16,7 +16,9 @@ function setup() {
     s_x[i] = random(width);
     s_y[i] = random(height);
   }
-  if (typeof screen.orientation !== 'undefined') {
+  if (UserAgent.match(/iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null)
+
+	{
     kgon=1;
   }
 }
@@ -75,7 +77,7 @@ function draw() {
   noStroke();
   fill(255, 50 , 50);
   textSize(50);
-  text("g: "+ g.toPrecision(5) +"m/s²", 630, 60);
+  text("G: "+ g.toPrecision(5) +"m/s²", 630, 60);
   //kg
   if(kgon) {
     stroke(255, 255, 0);
