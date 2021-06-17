@@ -24,10 +24,16 @@ function draw() {
 
 
   if(keyIsDown(UP_ARROW)) {
-      star += 1;
+      star += 10;
   }
   if(keyIsDown(DOWN_ARROW)) {
-      star -= 1;
+      star -= 10;
+  }
+  if(star > 1000) {
+    star = 999;
+  }
+  if(star < 0) {
+    star = 0;
   }
   strokeWeight(1);
   stroke(255, 255, 0);
