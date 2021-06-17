@@ -1,5 +1,5 @@
 
-var kgon = 0;
+var num = 0;
 
 var s_x=[];
 var s_y=[];
@@ -78,13 +78,11 @@ function draw() {
   fill(255, 50 , 50);
   textSize(50);
   text("G: "+ g.toPrecision(5) +"m/s²", 630, 60);
-  //kg
-  if(kgon) {
-    stroke(255, 255, 0);
-    strokeWeight(3);
-    fill(255, 255, 0);
-    text("kg: "+ (g/9.7805 * 200).toPrecision(5) +"kg", 605, 120);
-  }
+  //kilogram
+  stroke(255, 255, 0);
+  strokeWeight(3);
+  fill(255, 255, 0);
+  text("kg: "+ (g/9.7805 * 200).toPrecision(5) +"kg", 605, 120);
 
   //Universal Gravity
   strokeWeight(10);
@@ -122,9 +120,12 @@ function draw() {
 
 function keyPressed() {
   if(key == '1') {
-    kgon = 1;
+    num--;
   }
   if(key == '2') {
-    kgon = 0;
+    num ++;
+  }
+  if(num < 0) {
+    num = 0;
   }
 }
