@@ -4,13 +4,15 @@ var kgon = 0;
 var s_x=[];
 var s_y=[];
 
+var star = 50;
+
 function setup() {
   createCanvas(960, 570);
   stroke(2);
   textSize(30);
   fill(0);
 
-  for(var i = 0; i < 50;i ++) {
+  for(var i = 0; i < 1000;i ++) {
     s_x[i] = random(width);
     s_y[i] = random(height);
 
@@ -20,9 +22,16 @@ function setup() {
 function draw() {
   background(0, 0, 30);
 
+
+  if(keyIsDown(UP_ARROW)) {
+      star += 1;
+  }
+  if(keyIsDown(DOWN_ARROW)) {
+      star -= 1;
+  }
   strokeWeight(1);
   stroke(255, 255, 0);
-  for(var i = 0; i < 50;i ++) {
+  for(var i = 0; i < star;i ++) {
     ellipse(s_x[i], s_y[i], 1, 1);
   }
 
