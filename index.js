@@ -1,10 +1,25 @@
 
-var num = 0;
+var num = 5;
 
 var s_x=[];
 var s_y=[];
 
 var star = 50;
+
+var a = 6378137;
+var b = 6356752.314;
+
+function getR(lati) {
+  lati = radians(lati);
+  var f1 = Math.pow((Math.pow(a, 2) * cos(lati)), 2);
+  var f2 = Math.pow((Math.pow(b, 2) * sin(lati)), 2);
+  var f3 = Math.pow((a * cos(lati)), 2);
+  var f4 = Math.pow((b * sin(lati)), 2);
+
+  var radius =  Math.sqrt((f1 + f2) / (f3 + f4));
+
+  return radius;
+}
 
 function setup() {
   createCanvas(960, 570);
@@ -23,10 +38,10 @@ function draw() {
 
 
   if(keyIsDown(UP_ARROW)) {
-      star += 10;
+      star += 40;
   }
   if(keyIsDown(DOWN_ARROW)) {
-      star -= 10;
+      star -= 40;
   }
   if(star > 1000) {
     star = 999;
@@ -35,6 +50,7 @@ function draw() {
     star = 0;
   }
   for(var i = 0; i < star;i ++) {
+    fill(255);
     strokeWeight(1);
     stroke(255, 255, 0);
     ellipse(s_x[i], s_y[i], 1, 1);
@@ -68,47 +84,67 @@ function draw() {
   var y = height- 450*sin(radians(lat))
 
   //Gravity
-  var g = 9.78049 * (1+0.0052884*sin(radians(lat))*sin(radians(lat)) - 0.0000059*sin(2*radians(lat))*sin(2*radians(lat)))
-  noStroke();
-  fill(255, 50 , 50);
-  textSize(50);
-  text("G: "+ g.toPrecision(5) +"m/s²", 630, 60);
-  //kilogram
-  stroke(255, 255, 0);
-  strokeWeight(3);
-  fill(255, 255, 0);
-  text("kg: "+ (g/9.7805 * 200).toPrecision(5) +"kg", 605, 120);
+  if(num > 3) {
+    var g = 9.78049 * (1+0.0052884*sin(radians(lat))*sin(radians(lat)) - 0.0000059*sin(2*radians(lat))*sin(2*radians(lat)))
+    noStroke();
+    fill(255, 50 , 50);
+    textSize(50);
+    text("G: "+ g.toPrecision(5) +"m/s²", 630, 60);
+  }
+  if(num > 4) {
+    //kilogram
+    stroke(255, 255, 0);
+    strokeWeight(3);
+    fill(255, 255, 0);
+    text("kg: "+ (g/9.7805 * 200).toPrecision(5) +"kg", 605, 120);
+  }
+  if(num > 1) {
+    //Universal Gravity
+    strokeWeight(10);
+    //Adjoint Line
+    stroke(200, 50, 50, 50);
+    line(0, height, x, y);
+    //Universal Gravity
+    stroke(200, 50, 50);
+    line(x, y, (Math.pow(6378137,2)*100/2 / Math.pow(getR(lat), 2))* cos(radians(lat)),  height-(Math.pow(6378137,2)*100/2 / Math.pow(getR(lat), 2))* sin(radians(lat)));
 
-  //Universal Gravity
-  strokeWeight(10);
-  stroke(200, 50, 50);
-  line(0, height, x, y);
-  //cover up
-  noStroke();
-  fill(5, 120, 51);
-  ellipse(0, height, 400, 400);
-  //Adjoint Line
-  stroke(200, 50, 50, 50);
-  line(0, height, x, y);
 
-  //Adjoint Line
-  stroke(50, 50, 200, 50);
-  line(0, y, x, y);
-  //Centrifugal Force
-  strokeWeight(10);
-  stroke(50, 50, 200);
-  line(x, y, x+cos(radians(lat))*100, y);
+    //Centrifugal Force
+    //Adjoint Line
+    stroke(50, 200, 50, 50);
+    line(0, y, x, y);
+    //Centrifugal Force
+    strokeWeight(10);
+    stroke(50, 200, 50);
+    line(x, y, x+cos(radians(lat))*100, y);
+    //Display Latitude
+    fill(255);
+    noStroke();
+    textSize(35);
+    text("Lat: "+ lat.toPrecision(4) +"˚", m_x, m_y-50);
+  }
+  if(num>0) {
+    //Where am I?
+    noStroke();
+    fill(155, 155, 255, 130);
+    ellipse(x, y, 50, 50);
 
-  //Where am I?
-  noStroke();
-  fill(155, 155, 255, 130);
-  ellipse(x, y, 50, 50);
+    fill(255);
+    textSize(35);
+  }
   //It's Pointer. But Moon
   noStroke();
   fill(255, 255, 150, 130);
   ellipse(m_x, m_y, 50, 50);
-  //Display Latitude
-  fill(255);
-  textSize(35);
-  text("Lat: "+ lat.toPrecision(4) +"˚", m_x, m_y-50);
+
+  //Display Universal
+  if(num > 2) {
+    stroke(50, 50, 200);
+    strokeWeight(10);
+    line(x, y, (Math.pow(6378137,2)*100/2 / Math.pow(getR(lat), 2))* cos(radians(lat))+cos(radians(lat))*100,  height-(Math.pow(6378137,2)*100/2 / Math.pow(getR(lat), 2))* sin(radians(lat)));
+
+  }
+}
+
+function keyPressed() {
 }
