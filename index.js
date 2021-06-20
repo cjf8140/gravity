@@ -99,7 +99,6 @@ function draw() {
   if(num > 4) {
     //kilogram
     stroke(255, 255, 0);
-    noStroke();
     fill(255, 255, 0);
     text("kg: "+ (g/9.7805 * 200).toPrecision(5) +"kg", 605, 120);
   }
