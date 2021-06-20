@@ -83,6 +83,11 @@ function draw() {
   var x = 450*cos(radians(lat));
   var y = height- 450*sin(radians(lat))
 
+  //Gravity in Equator
+  noStroke();
+  fill(0, 0, 100, 100);
+  ellipse(0, height, Math.pow(6378137,2)*100 / Math.pow(getR(lat), 2), Math.pow(6378137,2)*100 / Math.pow(getR(lat), 2));
+
   //Gravity
   if(num > 3) {
     var g = 9.78049 * (1+0.0052884*sin(radians(lat))*sin(radians(lat)) - 0.0000059*sin(2*radians(lat))*sin(2*radians(lat)))
@@ -137,7 +142,7 @@ function draw() {
   fill(255, 255, 150, 130);
   ellipse(m_x, m_y, 50, 50);
 
-  //Display Universal
+  //Display Gravity
   if(num > 2) {
     stroke(50, 50, 200);
     strokeWeight(10);
