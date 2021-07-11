@@ -27,7 +27,7 @@ function setup() {
   textSize(30);
   fill(0);
 
-  for(var i = 0; i < 1000;i ++) {
+  for(var i = 0; i < 100000;i ++) {
     s_x[i] = random(width);
     s_y[i] = random(height);
   }
@@ -38,12 +38,12 @@ function draw() {
 
 
   if(keyIsDown(UP_ARROW)) {
-      star += 40;
+      star += 400;
   }
   if(keyIsDown(DOWN_ARROW)) {
-      star -= 40;
+      star -= 400;
   }
-  if(star > 1000) {
+  if(star > 100000) {
     star = 999;
   }
   if(star < 0) {
